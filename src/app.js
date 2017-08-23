@@ -1,6 +1,6 @@
 import React from "react";
 import ReactNative from "react-native";
-import { Header, Button, Spinner } from "./components/common";
+import { Header, Button, Spinner, CardSection } from "./components/common";
 import firebase from "firebase";
 import LoginForm from "./components/LoginForm";
 
@@ -30,17 +30,18 @@ class App extends React.Component {
     switch (this.state.loggedIn) {
       case true:
         return (
-          <Button
-            style={{ height: 39 }}
-            onPress={() => firebase.auth().signOut()}
-          >
-            Log Out
-          </Button>
+          <CardSection>
+            <Button onPress={() => firebase.auth().signOut()}>Log Out</Button>
+          </CardSection>
         );
       case false:
         return <LoginForm />;
       default:
-        return <Spinner size="large" />;
+        return (
+          <CardSection>
+            <Spinner size="large" />
+          </CardSection>
+        );
     }
   }
 
